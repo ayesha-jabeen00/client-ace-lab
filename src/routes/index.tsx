@@ -143,23 +143,19 @@ function Logos() {
   ];
   const row = [...brands, ...brands];
   return (
-    <section className="relative border-y border-border bg-gradient-to-r from-[oklch(0.18_0.03_265)] via-[oklch(0.22_0.04_270)] to-[oklch(0.18_0.03_265)] py-12">
-      <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-white/70">
+    <section className="border-y border-border bg-surface py-10">
+      <p className="text-center text-xs uppercase tracking-widest text-muted-foreground">
         Trusted by businesses across industries
       </p>
-      <div className="group mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-10 group-hover:[animation-play-state:paused] md:gap-14">
+      <div className="group mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
+        <div className="flex w-max animate-marquee items-center gap-16 group-hover:[animation-play-state:paused] md:gap-24">
           {row.map((b, i) => (
-            <div
-              key={i}
-              className="flex h-20 w-[200px] shrink-0 items-center justify-center rounded-xl bg-white px-5 py-3 shadow-card ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-0.5 md:h-24 md:w-[240px]"
-            >
+            <div key={i} className="flex h-16 shrink-0 items-center justify-center px-4 md:h-20">
               <img
                 src={b.src}
                 alt={b.name}
                 loading="lazy"
-                draggable={false}
-                className="max-h-full max-w-full object-contain grayscale transition duration-300 hover:grayscale-0"
+                className="h-full w-auto max-w-[180px] object-contain opacity-80 transition-opacity hover:opacity-100 md:max-w-[220px]"
               />
             </div>
           ))}
