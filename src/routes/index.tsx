@@ -11,6 +11,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
+import { ClientsSection } from "@/components/site/ClientsSection";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -43,7 +44,7 @@ function Home() {
       <Dashboard />
       <Process />
       <WhyUs />
-      <Testimonials />
+      <ClientsSection />
       <Team />
       <Industries />
       <FaqSection />
