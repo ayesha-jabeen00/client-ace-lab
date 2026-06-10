@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCta } from "@/components/site/FloatingCta";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -132,6 +133,7 @@ function RootComponent() {
         </main>
         <Footer />
         <FloatingCta />
+        <WhatsAppButton />
         <Toaster />
       </div>
     </QueryClientProvider>
