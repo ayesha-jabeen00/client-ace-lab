@@ -86,9 +86,14 @@ function Hero() {
             <Button asChild variant="brand" size="lg" className="rounded-full px-7">
               <Link to="/contact">Book Free Consultation <ArrowRight className="h-4 w-4" /></Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-7">
-              <Link to="/portfolio">View Portfolio</Link>
-            </Button>
+           <Button
+  asChild
+  variant="outline"
+  size="lg"
+  className="rounded-full px-7 border-[#0F6EF7] text-[#0F6EF7] hover:bg-[#0F6EF7] hover:text-white"
+>
+  <Link to="/portfolio">View Portfolio</Link>
+</Button>
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground">
@@ -133,36 +138,68 @@ function HeroStat({ label, value, suffix, prefix }: { label: string; value: numb
 }
 
 /* ---------------- LOGOS ---------------- */
-import veevibeAsset from "@/assets/veevibe.png.asset.json";
-import voatAsset from "@/assets/voat.png.asset.json";
-import manahireAsset from "@/assets/manahire.png.asset.json";
-import skyrydrAsset from "@/assets/skyrydr.png.asset.json";
-import skyLogisticsAsset from "@/assets/sky-logistics.png.asset.json";
+import veevibesLogo from "@/assets/logos/veevibes logo.jpg";
+import voatLogo from "@/assets/logos/voatnetwork logo.png";
+import manahireLogo from "@/assets/logos/MANAHIRE.webp";
+import skyrydrLogo from "@/assets/logos/skyrydr logo.webp";
+import skyLogisticsLogo from "@/assets/logos/sky-logo.webp";
 
 function Logos() {
   const brands = [
-    { name: "VeeVibes", src: veevibeAsset.url },
-    { name: "VOAT Network", src: voatAsset.url },
-    { name: "ManaHire", src: manahireAsset.url },
-    { name: "Skyrydr", src: skyrydrAsset.url },
-    { name: "Sky Logistics Hub", src: skyLogisticsAsset.url },
+    { name: "VeeVibes", src: veevibesLogo, type: "image/jpeg" },
+    { name: "VOAT Network", src: voatLogo, type: "image/png" },
+    { name: "ManaHire", src: manahireLogo, type: "image/webp" },
+    { name: "Skyrydr", src: skyrydrLogo, type: "image/webp" },
+    { name: "Sky Logistics Hub", src: skyLogisticsLogo, type: "image/webp" },
   ];
+
+  // Component to handle image loading errors
+  const LogoImage = ({ src, name }: { src: string; name: string }) => {
+    const [error, setError] = useState(false);
+
+    if (error) {
+      return (
+        <div className="flex items-center justify-center px-4 text-center">
+          <span className="text-sm font-medium text-white/90 md:text-base">
+            {name}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={src}
+        alt={`${name} logo`}
+        loading="lazy"
+        className="h-auto w-auto object-contain transition-all duration-300 hover:scale-110"
+        style={{
+          height: 'clamp(36px, 5vw, 60px)',
+          maxWidth: 'clamp(140px, 20vw, 220px)',
+        }}
+        onError={() => setError(true)}
+      />
+    );
+  };
+
   const row = [...brands, ...brands];
+  
   return (
-    <section className="border-y border-[#6084BE]/30 bg-[#6084BE] py-10">
-      <p className="text-center text-xs uppercase tracking-widest text-white/80">
-        Trusted by businesses across industries
-      </p>
-      <div className="group mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-16 group-hover:[animation-play-state:paused] md:gap-24">
-          {row.map((b, i) => (
-            <div key={i} className="flex h-16 shrink-0 items-center justify-center px-4 md:h-20">
-              <img
-                src={b.src}
-                alt={b.name}
-                loading="lazy"
-                className="h-full w-auto max-w-[180px] object-contain opacity-80 transition-opacity hover:opacity-100 md:max-w-[220px]"
-              />
+    <section className="border-y border-[#6084BE]/30 bg-gradient-to-br from-[#6084BE] to-[#4A6FA5] py-12 md:py-16">
+      <div className="container-page">
+        <p className="text-center text-xs font-medium uppercase tracking-widest text-white/90 md:text-sm">
+          Trusted by businesses across industries
+        </p>
+      </div>
+      
+      <div className="group relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)] md:[mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
+        <div className="flex w-max animate-marquee items-center gap-12 group-hover:[animation-play-state:paused] md:gap-20 lg:gap-24">
+          {row.map((brand, i) => (
+            <div 
+              key={i} 
+              className="flex shrink-0 items-center justify-center px-2 md:px-4"
+            >
+              <LogoImage src={brand.src} name={brand.name} />
             </div>
           ))}
         </div>

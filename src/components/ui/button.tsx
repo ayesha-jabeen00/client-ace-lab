@@ -9,16 +9,31 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        brand: "bg-gradient-brand text-primary-foreground shadow-glow hover:opacity-90",
-        accent: "bg-accent text-accent-foreground shadow hover:opacity-90",
+          "border border-[#0F6EF7] bg-background text-[#0F6EF7] shadow-sm hover:bg-[#0F6EF7] hover:text-white",
+
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+
+        ghost:
+          "text-[#0F6EF7] hover:bg-[#0F6EF7]/10 hover:text-[#0F6EF7]",
+
+        link:
+          "text-[#0F6EF7] underline-offset-4 hover:underline",
+
+        brand:
+          "bg-gradient-brand text-primary-foreground shadow-glow hover:opacity-90",
+
+        accent:
+          "bg-[#0F6EF7] text-white shadow hover:bg-[#0F6EF7]/90",
       },
+
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
@@ -26,11 +41,12 @@ const buttonVariants = cva(
         icon: "h-9 w-9",
       },
     },
+
     defaultVariants: {
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ButtonProps

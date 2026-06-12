@@ -1,8 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
 import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
 
 export function Footer() {
+  const handleWhatsAppClick = () => {
+    window.open("https://wa.me/917799770919", "_blank");
+  };
+
   return (
     <footer className="bg-[#0B1020] text-white">
       <div className="container-page py-16">
@@ -31,11 +35,11 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold text-white">Quick Links</h4>
             <ul className="mt-5 space-y-3 text-sm text-white/70">
-              <li><Link to="/" className="hover:text-white">Home</Link></li>
-              <li><Link to="/about" className="hover:text-white">About</Link></li>
-              <li><Link to="/portfolio" className="hover:text-white">Portfolio</Link></li>
-              <li><Link to="/" className="hover:text-white">Clients</Link></li>
-              <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
+              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
+              <li><Link to="/" className="hover:text-white transition-colors">Clients</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -43,32 +47,45 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold text-white">Services</h4>
             <ul className="mt-5 space-y-3 text-sm text-white/70">
-              <li><Link to="/services" className="hover:text-white">Web Development</Link></li>
-              <li><Link to="/services" className="hover:text-white">Digital Marketing</Link></li>
-              <li><Link to="/services" className="hover:text-white">SEO & SMM</Link></li>
-              <li><Link to="/services" className="hover:text-white">Video Editing</Link></li>
-              <li><Link to="/services" className="hover:text-white">Graphic Design</Link></li>
-              <li><Link to="/services" className="hover:text-white">Branding</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Web Development</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Digital Marketing</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">SEO & SMM</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Video Editing</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Graphic Design</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Branding</Link></li>
             </ul>
           </div>
 
-          {/* Stay Updated */}
+          {/* Get In Touch */}
           <div>
-            <h4 className="font-display text-lg font-semibold text-white">Stay Updated</h4>
-            <p className="mt-5 text-sm text-white/70">
-              Subscribe to our newsletter for the latest updates and insights.
-            </p>
-            <form className="mt-5 flex gap-2" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/50 outline-none focus:border-primary"
-              />
-              <button className="rounded-lg bg-gradient-brand px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-glow hover:opacity-90">
-                Join
-              </button>
-            </form>
+            <h4 className="font-display text-lg font-semibold text-white">Get In Touch</h4>
+            <div className="mt-5 space-y-3 text-sm text-white/70">
+              <p className="flex flex-col">
+                <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Phone</span>
+                <a href="tel:+917799770919" className="hover:text-white transition-colors">
+                  +91 77997 70919
+                </a>
+              </p>
+              <p className="flex flex-col">
+                <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Email</span>
+                <a href="mailto:info@hashorbit.com" className="hover:text-white transition-colors break-all">
+                  info@hashorbit.com
+                </a>
+              </p>
+              <p className="flex flex-col">
+                <span className="text-white/50 text-xs uppercase tracking-wider mb-1">Location</span>
+                <span>Hyderabad, India</span>
+              </p>
+            </div>
+            
+            {/* WhatsApp CTA Button */}
+            <button
+              onClick={handleWhatsAppClick}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-brand px-5 py-3 text-sm font-medium text-primary-foreground shadow-glow transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Chat On WhatsApp
+            </button>
           </div>
         </div>
 
@@ -87,7 +104,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
     <a
       href={href}
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/80 transition hover:bg-white/10 hover:text-white"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-110"
     >
       {children}
     </a>

@@ -2,6 +2,11 @@ import { useState } from "react";
 import { ExternalLink, Eye, X, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import veevibeCreativeImg from "@/assets/images/veevibe-creative.png";
+import voatfolioCreativeImg from "@/assets/images/voatfolio-creative.png";
+import dgpCreativeImg from "@/assets/images/DGP-creative.png";
+import otherCreativeImg from "@/assets/images/other creative.png";
+
 type Creative = {
   name: string;
   url: string;
@@ -17,6 +22,7 @@ const creatives: Creative[] = [
   {
     name: "Veevibe Creative",
     url: "https://www.canva.com/design/DAG0iunSy9w/B3fptxMnY-29CyttHQeshA/view",
+    image: veevibeCreativeImg,
     gradient: "from-slate-800 via-slate-900 to-black",
     category: "Branding",
     description:
@@ -27,6 +33,7 @@ const creatives: Creative[] = [
   {
     name: "VOATFolio",
     url: "https://www.canva.com/design/DAGyoWr5LSo/MI5--00i-3y6C1p3CUY4Zg/view",
+    image: voatfolioCreativeImg,
     gradient: "from-purple-500 via-violet-600 to-indigo-700",
     category: "Portfolio",
     description:
@@ -37,6 +44,7 @@ const creatives: Creative[] = [
   {
     name: "DGP Event",
     url: "https://www.canva.com/design/DAG12cpIsvU/ZGfDBQDrOqf-J0al9PIpkw/view",
+    image: dgpCreativeImg,
     gradient: "from-amber-200 via-orange-300 to-rose-300",
     category: "Event Design",
     description:
@@ -47,6 +55,7 @@ const creatives: Creative[] = [
   {
     name: "Creative Gallery",
     url: "https://www.canva.com/design/DAG5Yh4Pluw/GxApzMz46N8jr-H19Z90lA/view",
+    image: otherCreativeImg,
     gradient: "from-rose-700 via-red-800 to-slate-900",
     category: "Marketing",
     description:
@@ -55,7 +64,6 @@ const creatives: Creative[] = [
     year: "2024",
   },
 ];
-
 export function CreativesSection() {
   const [selected, setSelected] = useState<Creative | null>(null);
 
@@ -97,9 +105,13 @@ export function CreativesSection() {
             >
               {/* Preview */}
               <div className="relative aspect-[4/3] overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${creative.gradient}`}
-                />
+               <img
+  src={creative.image}
+  alt={creative.name}
+  className="absolute inset-0 h-full w-full object-cover"
+/>
+
+<div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-0 grid place-items-center p-6 text-center">
                   <div>
                     <p className="font-display text-2xl font-bold text-white/95 drop-shadow">
@@ -181,7 +193,13 @@ export function CreativesSection() {
               <X className="h-4 w-4" />
             </button>
 
-            <div className={`relative h-48 bg-gradient-to-br ${selected.gradient} md:h-60`}>
+           <div className="relative h-48 md:h-60 overflow-hidden">
+  <img
+    src={selected.image}
+    alt={selected.name}
+    className="absolute inset-0 h-full w-full object-cover"
+  />
+  <div className="absolute inset-0 bg-black/50" />
               <div className="absolute inset-0 grid place-items-center text-center">
                 <div>
                   <p className="font-display text-3xl font-bold text-white drop-shadow">

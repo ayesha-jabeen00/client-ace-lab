@@ -1,91 +1,289 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Send, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Book a Free Marketing Audit | Northwind" },
-      { name: "description", content: "Get a free 30-minute audit of your funnel, channels and creative. Senior strategist, no sales pitch." },
-      { property: "og:title", content: "Contact Northwind" },
-      { property: "og:description", content: "Book a free marketing audit." },
+      { title: "Contact Hash Orbit | Let's Build Your Brand" },
+      {
+        name: "description",
+        content:
+          "Ready to transform your digital presence? Contact Hash Orbit for web development, digital marketing, branding, and growth solutions.",
+      },
     ],
   }),
   component: ContactPage,
 });
 
 function ContactPage() {
-  return (
-    <section className="container-page grid gap-12 py-20 lg:grid-cols-2">
-      <div>
-        <div className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Contact
-        </div>
-        <h1 className="mt-4 font-display text-5xl font-bold tracking-tight md:text-6xl">
-          Let's <span className="text-gradient">talk growth.</span>
-        </h1>
-        <p className="mt-5 max-w-md text-lg text-muted-foreground">
-          Fill the form and a senior strategist will reach out within one business day with a tailored audit.
-        </p>
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
-        <div className="mt-10 space-y-4">
-          <InfoLine icon={<Mail className="h-4 w-4" />} text="hello@northwind.agency" />
-          <InfoLine icon={<Phone className="h-4 w-4" />} text="+1 (555) 010-0000" />
-          <InfoLine icon={<MapPin className="h-4 w-4" />} text="Lisbon · London · New York" />
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+ const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
+
+  setIsSubmitting(true);
+  setSuccessMessage("");
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "a9f25c34-33e6-47cb-858a-21514d6d63e0",
+        subject: "New Contact Form Submission - Hash Orbit",
+
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || "Submission failed");
+    }
+
+    setSuccessMessage(
+      "Thank you! Your message has been received. Our team will contact you shortly."
+    );
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 5000);
+  } catch (error) {
+    setSuccessMessage(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent(
+      "Hi Hash Orbit! I'm interested in your services."
+    );
+
+    window.open(
+      `https://wa.me/917799770919?text=${message}`,
+      "_blank"
+    );
+  };
+
+  return (
+    <section id="contact" className="py-16 md:py-24 bg-background">
+      <div className="container-page">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            Get in Touch
+          </span>
+
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6">
+            Let's Build Your <span className="text-gradient">Brand!</span>
+          </h1>
+
+          <p className="text-muted-foreground text-lg">
+            Ready to transform your digital presence? Let's discuss your
+            project.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Contact Form */}
+          <div className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-card">
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+              Send us a message
+            </h2>
+
+            {successMessage && (
+              <div className="mb-4 rounded-xl border border-green-200 bg-green-50 p-4 text-green-700">
+                {successMessage}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+               <input
+    type="hidden"
+    name="access_key"
+    value="a9f25c34-33e6-47cb-858a-21514d6d63e0"
+  />
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-medium">
+                    Your Name
+                  </label>
+
+                  <Input
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-medium">
+                    Email Address
+                  </label>
+
+                  <Input
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="example@gmail.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium">
+                  Phone Number
+                </label>
+
+                <Input
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+91"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium">
+                  Your Message
+                </label>
+
+                <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your project..."
+                  rows={5}
+                  required
+                  className="resize-none"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                variant="brand"
+                size="lg"
+                disabled={isSubmitting}
+                className="w-full rounded-xl"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+                <Send className="ml-2 h-4 w-4" />
+              </Button>
+            </form>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div className="rounded-3xl bg-gradient-brand p-8 text-primary-foreground shadow-glow">
+              <h2 className="font-display text-2xl font-bold mb-3">
+                Quick Response Guaranteed
+              </h2>
+
+              <p className="mb-6 text-sm opacity-90">
+                Prefer WhatsApp? Click below for instant communication with our
+                team.
+              </p>
+
+              <Button
+                onClick={handleWhatsApp}
+                className="w-full bg-white text-primary hover:bg-white/90"
+                size="lg"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Chat on WhatsApp
+              </Button>
+            </div>
+
+            <InfoCard
+              icon={<Mail className="h-5 w-5 text-primary" />}
+              title="Email Us"
+              value="info@hashorbit.com"
+            />
+
+            <InfoCard
+              icon={<Phone className="h-5 w-5 text-primary" />}
+              title="Call Us"
+              value="+91 77997 70919"
+            />
+
+            <InfoCard
+              icon={<MapPin className="h-5 w-5 text-primary" />}
+              title="Location"
+              value="Hyderabad, Telangana, India"
+            />
+          </div>
         </div>
       </div>
-
-      <form onSubmit={(e) => e.preventDefault()} className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Field label="Name" placeholder="Jane Doe" />
-          <Field label="Business name" placeholder="Acme Co." />
-          <Field label="Email" type="email" placeholder="jane@acme.com" />
-          <Field label="Phone" placeholder="+1 555 000 0000" />
-          <SelectField label="Monthly marketing budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} />
-          <SelectField label="Services interested in" options={["SEO", "Google Ads", "Meta Ads", "Web Development", "Full-funnel"]} />
-        </div>
-        <div className="mt-4">
-          <Label>Message</Label>
-          <textarea rows={4} placeholder="Tell us about your goals…" className="mt-1.5 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary" />
-        </div>
-        <Button variant="brand" size="lg" className="mt-6 w-full rounded-full">
-          Get Free Marketing Audit <ArrowRight className="h-4 w-4" />
-        </Button>
-      </form>
     </section>
   );
 }
 
-function InfoLine({ icon, text }: { icon: React.ReactNode; text: string }) {
+function InfoCard({
+  icon,
+  title,
+  value,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+}) {
   return (
-    <div className="flex items-center gap-3 text-sm text-muted-foreground">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-muted text-foreground">{icon}</span>
-      {text}
-    </div>
-  );
-}
+    <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+        {icon}
+      </div>
 
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{children}</label>;
-}
-
-function Field({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <input {...props} className="mt-1.5 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none focus:border-primary" />
-    </div>
-  );
-}
-
-function SelectField({ label, options }: { label: string; options: string[] }) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <select className="mt-1.5 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm outline-none focus:border-primary">
-        <option value="">Select…</option>
-        {options.map((o) => <option key={o}>{o}</option>)}
-      </select>
+      <div>
+        <h3 className="font-semibold text-foreground">{title}</h3>
+        <p className="text-sm text-muted-foreground">{value}</p>
+      </div>
     </div>
   );
 }

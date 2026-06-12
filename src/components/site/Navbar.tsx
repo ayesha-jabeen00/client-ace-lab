@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/site/SearchBar";
-import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
+import logo from "@/assets/logos/hash orbit logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -38,12 +38,10 @@ export function Navbar() {
       <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
         <Link to="/" className="flex items-center shrink-0" aria-label="Hash Orbit home">
           <img
-            src={logoAsset.url}
-            alt="Hash Orbit"
-            width={1200}
-            height={675}
-            className="h-[60px] w-auto md:h-20 object-contain"
-          />
+  src={logo}
+  alt="Hash Orbit"
+  className="h-16 w-auto md:h-24 object-contain"
+/>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
