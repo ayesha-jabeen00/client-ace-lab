@@ -37,10 +37,10 @@ const SERVICES = [
   { icon: Video, name: "Video Marketing", desc: "UGC, ad creative and YouTube growth." },
   { icon: TrendingUp, name: "Performance Marketing", desc: "Full-funnel attribution and CRO." },
   { icon: Sparkles, name: "Brand Strategy", desc: "Positioning, story and visual identity." },
-  { icon: Zap, name: "Marketing Automation", desc: "HubSpot, Klaviyo and Customer.io builds." },
-  { icon: Mail, name: "Email Marketing", desc: "Flows and campaigns people actually open." },
+  // { icon: Zap, name: "Marketing Automation", desc: "HubSpot, Klaviyo and Customer.io builds." },
+  // { icon: Mail, name: "Email Marketing", desc: "Flows and campaigns people actually open." },
   { icon: Globe, name: "Website Development", desc: "Fast, SEO-friendly sites that convert." },
-  { icon: GitBranch, name: "Funnel Building", desc: "Lead magnets, landers and nurture." },
+  // { icon: GitBranch, name: "Funnel Building", desc: "Lead magnets, landers and nurture." },
 ];
 
 const DEMO_WEBSITES = [

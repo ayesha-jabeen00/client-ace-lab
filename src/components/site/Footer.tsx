@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Twitter, Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
-import logoAsset from "@/assets/hash-orbit-logo.png.asset.json";
-
+import logo from "@/assets/logos/hash-orbit-logo.png";
 export function Footer() {
   const handleWhatsAppClick = () => {
     window.open("https://wa.me/917799770919", "_blank");
@@ -14,19 +13,19 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link to="/" className="inline-flex items-center" aria-label="Hash Orbit home">
-              <img
-                src={logoAsset.url}
-                alt="Hash Orbit"
-                className="h-14 w-auto object-contain"
-              />
+           <img
+  src={logo}
+  alt="Hash Orbit"
+  className="h-20 md:h-24 lg:h-28 w-auto object-contain"
+/>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/70">
               Building digital success through smart creatives and technology. Your trusted partner for web development, marketing, and creative solutions.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <SocialIcon href="#" label="Instagram"><Instagram className="h-4 w-4" /></SocialIcon>
-              <SocialIcon href="#" label="Twitter"><Twitter className="h-4 w-4" /></SocialIcon>
-              <SocialIcon href="#" label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialIcon>
+              {/* <SocialIcon href="#" label="Twitter"><Twitter className="h-4 w-4" /></SocialIcon>
+              <SocialIcon href="#" label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialIcon> */}
               <SocialIcon href="#" label="YouTube"><Youtube className="h-4 w-4" /></SocialIcon>
             </div>
           </div>

@@ -77,7 +77,7 @@ export function CreativesSection() {
   };
 
   return (
-    <section className="bg-background py-20 md:py-28">
+  <section className="bg-background py-0 md:py-5">
       <div className="container-page">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">

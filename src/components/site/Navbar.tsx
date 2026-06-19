@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/site/SearchBar";
-import logo from "@/assets/logos/hash orbit logo.png";
+import logo from "@/assets/logos/hash-orbit-logo.png";
 
 const links = [
   { to: "/", label: "Home" },

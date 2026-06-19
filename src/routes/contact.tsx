@@ -256,7 +256,7 @@ function ContactPage() {
             <InfoCard
               icon={<MapPin className="h-5 w-5 text-primary" />}
               title="Location"
-              value="Hyderabad, Telangana, India"
+              value="Visakhapatnam, Andhra Pradesh, India"
             />
           </div>
         </div>

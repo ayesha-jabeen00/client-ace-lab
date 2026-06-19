@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { Play, ArrowUpRight, Sparkles } from "lucide-react";
 
 type Video = {
   title: string;
@@ -54,23 +54,26 @@ const videos: Video[] = [
 
 export function VideoSection() {
   return (
-    <section className="bg-background py-20 md:py-28">
-      <div className="container-page">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full bg-amber-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-amber-600">
-            Video Production
-          </span>
-          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">
-            Video{" "}
-            <span className="bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
-              Showcase
-            </span>
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground md:text-lg">
-            Professional video editing that tells your story and engages your audience
-          </p>
-        </div>
+    <section className="bg-background py-10 md:py-10">
+  <div className="container-page">
+    {/* Header */}
+    <div className="mx-auto max-w-3xl text-center">
+      <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+          <Sparkles className="h-3.5 w-3.5" />
+        Video Work
+      </span>
+
+      <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">
+        Video{" "}
+        <span className="bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
+          Creativity
+        </span>
+      </h2>
+
+      <p className="mt-4 text-base text-muted-foreground md:text-lg">
+        Professional video editing and visual storytelling crafted to engage audiences and strengthen brand presence
+      </p>
+    </div>
 
         {/* Grid */}
         <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">

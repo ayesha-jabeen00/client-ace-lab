@@ -3,11 +3,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Eye, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { CreativesSection } from "@/components/site/CreativesSection";
+import { VideoSection } from "@/components/site/VideoSection";
+
 import veevibeImg from "@/assets/images/veevibe-img.png";
 import voatnetworkImg from "@/assets/images/voatnetwork-img.png";
 import manahireImg from "@/assets/images/manahire-img.png";
 import skyrydrImg from "@/assets/images/skyrydr-img.png";
 import skylogisticsImg from "@/assets/images/skylogistics-img.png";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -240,6 +244,11 @@ function PortfolioPage() {
           </div>
         )}
       </section>
+     {/* Creative Portfolio */}
+<CreativesSection />
+
+{/* Video Portfolio */}
+<VideoSection />
 
       {/* CTA Section */}
       <section className="container-page pb-24 text-center">
@@ -249,4 +258,6 @@ function PortfolioPage() {
       </section>
     </>
   );
+
+  
 }

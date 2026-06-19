@@ -39,17 +39,19 @@ function Home() {
     <>
       <Hero />
       <Logos />
-      <Stats />
+      {/* <Stats /> */}
       <Services />
+      <PortfolioCategories />
+
       {/* <Portfolio /> */}
       {/* <CaseStudy /> */}
       {/* <Dashboard /> */}
       <Process />
       <WhyUs />
-      <ClientsSection />
-      <CreativesSection />
-      <VideoSection />
-      <Team />
+       <ClientsSection />
+     {/* <CreativesSection />
+      <VideoSection />  */}
+      {/* <Team /> */}
       <Industries />
       {/* <FaqSection /> */}
       <ContactCta />
@@ -109,7 +111,7 @@ function Hero() {
             <HeroStat label="Average ROAS" value={450} suffix="%" />
             <HeroStat label="Brands scaled" value={8} suffix="+" />
             <HeroStat label="Revenue driven" value={3} prefix="₹" suffix="L+" />
-            <HeroStat label="Client retention" value={94} suffix="%" />
+            <HeroStat label="Client retention" value={80} suffix="%" />
           </div>
           <div className="pointer-events-none absolute -inset-x-10 -bottom-10 -z-10 h-40 bg-gradient-brand opacity-30 blur-3xl" />
         </div>
@@ -143,6 +145,10 @@ import voatLogo from "@/assets/logos/voatnetwork logo.png";
 import manahireLogo from "@/assets/logos/MANAHIRE.webp";
 import skyrydrLogo from "@/assets/logos/skyrydr logo.webp";
 import skyLogisticsLogo from "@/assets/logos/sky-logo.webp";
+import voatImg from "@/assets/images/voatnetwork-img.png";
+import voatfolioCreativeImg from "@/assets/images/voatfolio-creative.png";
+import McarcareLogo from "@/assets/images/3MCarcarelogo.png";
+import Growmintlogo from "@/assets/images/growmintlogo.png";
 
 function Logos() {
   const brands = [
@@ -151,6 +157,17 @@ function Logos() {
     { name: "ManaHire", src: manahireLogo, type: "image/webp" },
     { name: "Skyrydr", src: skyrydrLogo, type: "image/webp" },
     { name: "Sky Logistics Hub", src: skyLogisticsLogo, type: "image/webp" },
+    {
+  name: "3M Car Care",
+  src: McarcareLogo,
+  type: "image/png",
+},
+    {
+  name: "Growmint",
+  src: Growmintlogo,
+  type: "image/png",
+},
+
   ];
 
   // Component to handle image loading errors
@@ -168,17 +185,21 @@ function Logos() {
     }
 
     return (
-      <img
-        src={src}
-        alt={`${name} logo`}
-        loading="lazy"
-        className="h-auto w-auto object-contain transition-all duration-300 hover:scale-110"
-        style={{
-          height: 'clamp(36px, 5vw, 60px)',
-          maxWidth: 'clamp(140px, 20vw, 220px)',
-        }}
-        onError={() => setError(true)}
-      />
+     <img
+  src={src}
+  alt={`${name} logo`}
+  loading="lazy"
+  className="h-auto w-auto object-contain transition-all duration-300 hover:scale-110"
+  style={{
+    height: name === "3M Car Care"
+      ? "clamp(50px, 7vw, 80px)"
+      : "clamp(36px, 5vw, 60px)",
+    maxWidth: name === "3M Car Care"
+      ? "clamp(180px, 25vw, 280px)"
+      : "clamp(140px, 20vw, 220px)",
+  }}
+  onError={() => setError(true)}
+/>
     );
   };
 
@@ -209,39 +230,39 @@ function Logos() {
 }
 
 /* ---------------- STATS ---------------- */
-function Stats() {
-  const items = [
-    { label: "Leads Generated", value: 800, suffix: "+", note: "Across all clients" },
-    { label: "Ad Spend Managed", value: 3, prefix: "₹", suffix: "L+", note: "Last 24 months" },
-    { label: "Projects Completed", value: 540, suffix: "+", note: "Since 2018" },
-    { label: "Client Retention", value: 94, suffix: "%", note: "Year over year" },
-    { label: "Revenue Generated", value: 3, prefix: "₹", suffix: "L+", note: "Tracked attribution" },
-  ];
-  return (
-    <section className="container-page py-24">
-      <SectionHeader
-        eyebrow="By the numbers"
-        title="Results that speak for themselves"
-        subtitle="Built on five years of relentless experimentation, hard data, and brutally honest reporting."
-      />
-      <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-3 lg:grid-cols-5">
-        {items.map((s) => (
-          <div key={s.label} className="bg-card p-8 transition-colors hover:bg-surface">
-            <div className="font-display text-4xl font-bold text-gradient">
-              {s.value % 1 !== 0 ? (
-                <span>{s.prefix ?? ""}{s.value}{s.suffix ?? ""}</span>
-              ) : (
-                <Counter to={s.value} prefix={s.prefix} suffix={s.suffix} />
-              )}
-            </div>
-            <div className="mt-3 font-medium">{s.label}</div>
-            <div className="text-sm text-muted-foreground">{s.note}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+// function Stats() {
+//   const items = [
+//     { label: "Leads Generated", value: 800, suffix: "+", note: "Across all clients" },
+//     { label: "Ad Spend Managed", value: 3, prefix: "₹", suffix: "L+", note: "Last 24 months" },
+//     { label: "Projects Completed", value: 540, suffix: "+", note: "Since 2018" },
+//     { label: "Client Retention", value: 94, suffix: "%", note: "Year over year" },
+//     { label: "Revenue Generated", value: 3, prefix: "₹", suffix: "L+", note: "Tracked attribution" },
+//   ];
+//   return (
+//     <section className="container-page py-24">
+//       <SectionHeader
+//         eyebrow="By the numbers"
+//         title="Results that speak for themselves"
+//         subtitle="Built on five years of relentless experimentation, hard data, and brutally honest reporting."
+//       />
+//       <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-3 lg:grid-cols-5">
+//         {items.map((s) => (
+//           <div key={s.label} className="bg-card p-8 transition-colors hover:bg-surface">
+//             <div className="font-display text-4xl font-bold text-gradient">
+//               {s.value % 1 !== 0 ? (
+//                 <span>{s.prefix ?? ""}{s.value}{s.suffix ?? ""}</span>
+//               ) : (
+//                 <Counter to={s.value} prefix={s.prefix} suffix={s.suffix} />
+//               )}
+//             </div>
+//             <div className="mt-3 font-medium">{s.label}</div>
+//             <div className="text-sm text-muted-foreground">{s.note}</div>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ---------------- SERVICES ---------------- */
 const SERVICES = [
@@ -253,10 +274,10 @@ const SERVICES = [
   { icon: Video, name: "Video Marketing", desc: "Short-form, ad creative, and YouTube growth engines." },
   { icon: TrendingUp, name: "Performance Marketing", desc: "Full-funnel attribution, CRO and channel mixing." },
   { icon: Sparkles, name: "Brand Strategy", desc: "Positioning, narrative & visual systems with bite." },
-  { icon: Zap, name: "Marketing Automation", desc: "Lifecycle flows in HubSpot, Klaviyo & Customer.io." },
-  { icon: Mail, name: "Email Marketing", desc: "Newsletters and revenue flows people actually open." },
+  // { icon: Zap, name: "Marketing Automation", desc: "Lifecycle flows in HubSpot, Klaviyo & Customer.io." },
+  // { icon: Mail, name: "Email Marketing", desc: "Newsletters and revenue flows people actually open." },
   { icon: Globe, name: "Website Development", desc: "Fast, SEO-friendly websites built to convert." },
-  { icon: GitBranch, name: "Funnel Building", desc: "Lead magnets, landers & nurture for predictable pipeline." },
+  // { icon: GitBranch, name: "Funnel Building", desc: "Lead magnets, landers & nurture for predictable pipeline." },
 ];
 
 function Services() {
@@ -535,6 +556,77 @@ const STEPS = [
   { i: ChartLine, t: "Scale Growth", d: "Double down on what wins and exit the rest." },
 ];
 
+function PortfolioCategories() {
+  const items = [
+    {
+      title: "Websites",
+      image: voatImg,
+      link: "/portfolio",
+    },
+    {
+      title: "Creatives",
+      image: voatfolioCreativeImg,
+      link: "/creatives",
+    },
+    {
+      title: "Videos",
+      image:
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=600&fit=crop",
+      link: "/videos",
+    },
+  ];
+
+  return (
+    <section className="container-page py-24">
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          Our Portfolio
+        </div>
+
+        <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          Explore our work
+        </h2>
+
+        <p className="mt-4 text-lg text-muted-foreground">
+          Websites, creative designs and video productions crafted to help brands grow.
+        </p>
+      </div>
+
+      <div className="mt-14 grid gap-8 md:grid-cols-3">
+        {items.map((item) => (
+          <Link
+            key={item.title}
+            to={item.link}
+            className="group overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/40" />
+            </div>
+
+            <div className="p-6">
+              <h3 className="font-display text-2xl font-bold">
+                {item.title}
+              </h3>
+
+              <div className="mt-4 inline-flex items-center gap-2 text-primary font-medium">
+                View Work
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Process() {
   return (
     <section className="bg-surface py-24">
@@ -546,7 +638,7 @@ function Process() {
             {STEPS.map((s, i) => (
               <div key={s.t} className={`grid items-center gap-6 md:grid-cols-2 ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}>
                 <div className={`flex ${i % 2 ? "md:justify-start" : "md:justify-end"}`}>
-                  <div className="max-w-md rounded-2xl border border-border bg-card p-6 shadow-card">
+                <div className="w-full rounded-2xl border border-border bg-card p-6 shadow-card md:max-w-md">
                     <div className="flex items-center gap-3">
                       <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
                         <s.i className="h-5 w-5" />
@@ -657,38 +749,38 @@ function Testimonials() {
 }
 
 /* ---------------- TEAM ---------------- */
-const TEAM = [
-  { n: "Ava Rhodes", r: "Founder & CEO", g: "from-rose-400 to-orange-400" },
-  { n: "Daniel Kim", r: "Head of Strategy", g: "from-blue-400 to-cyan-400" },
-  { n: "Sofia Martins", r: "Lead SEO Specialist", g: "from-emerald-400 to-teal-400" },
-  { n: "Marcus Webb", r: "Paid Media Director", g: "from-violet-400 to-fuchsia-400" },
-  { n: "Yuki Tanaka", r: "Design Lead", g: "from-amber-400 to-orange-500" },
-  { n: "Omar Haddad", r: "Performance Engineer", g: "from-indigo-400 to-blue-500" },
-];
+// const TEAM = [
+//   { n: "Ava Rhodes", r: "Founder & CEO", g: "from-rose-400 to-orange-400" },
+//   { n: "Daniel Kim", r: "Head of Strategy", g: "from-blue-400 to-cyan-400" },
+//   { n: "Sofia Martins", r: "Lead SEO Specialist", g: "from-emerald-400 to-teal-400" },
+//   { n: "Marcus Webb", r: "Paid Media Director", g: "from-violet-400 to-fuchsia-400" },
+//   { n: "Yuki Tanaka", r: "Design Lead", g: "from-amber-400 to-orange-500" },
+//   { n: "Omar Haddad", r: "Performance Engineer", g: "from-indigo-400 to-blue-500" },
+// ];
 
-function Team() {
-  return (
-    <section className="container-page py-24">
-      <SectionHeader eyebrow="The team" title="Senior people on your account" subtitle="No farming, no agency layers. Just specialists who care." />
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-        {TEAM.map((m) => (
-          <div key={m.n} className="group text-center">
-            <div className={`relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br ${m.g}`}>
-              <div className="absolute inset-0 grid place-items-center font-display text-4xl font-bold text-white/90">
-                {m.n.split(" ").map((p) => p[0]).join("")}
-              </div>
-              <a href="#" aria-label="LinkedIn" className="absolute bottom-3 right-3 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                <Linkedin className="h-4 w-4" />
-              </a>
-            </div>
-            <div className="mt-3 font-display text-sm font-semibold">{m.n}</div>
-            <div className="text-xs text-muted-foreground">{m.r}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+// function Team() {
+//   return (
+//     <section className="container-page py-24">
+//       <SectionHeader eyebrow="The team" title="Senior people on your account" subtitle="No farming, no agency layers. Just specialists who care." />
+//       <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+//         {TEAM.map((m) => (
+//           <div key={m.n} className="group text-center">
+//             <div className={`relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br ${m.g}`}>
+//               <div className="absolute inset-0 grid place-items-center font-display text-4xl font-bold text-white/90">
+//                 {m.n.split(" ").map((p) => p[0]).join("")}
+//               </div>
+//               <a href="#" aria-label="LinkedIn" className="absolute bottom-3 right-3 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-primary opacity-0 transition-opacity group-hover:opacity-100">
+//                 <Linkedin className="h-4 w-4" />
+//               </a>
+//             </div>
+//             <div className="mt-3 font-display text-sm font-semibold">{m.n}</div>
+//             <div className="text-xs text-muted-foreground">{m.r}</div>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ---------------- INDUSTRIES ---------------- */
 const INDUSTRIES = [
